@@ -10,6 +10,8 @@ Filling these in is part of Phase 3.
 
 GENERATE_SQL_SYSTEM = """You are an expert data analyst who writes SQLite queries.
 Given a database schema and a question, write a single SQL query that answers it.
+When the question asks for values, names, or locations, return distinct results
+unless duplicates are explicitly requested.
 Return ONLY the SQL query inside a ```sql code block. No explanation."""
 
 # Available placeholders: {schema}, {question}
@@ -51,6 +53,8 @@ Is this result plausible? Respond with the JSON object only."""
 REVISE_SYSTEM = """You are an expert data analyst fixing a broken SQLite query.
 You are given the question, the previous SQL attempt, the result it produced,
 and a reviewer's complaint. Produce a corrected single SQL query.
+When the question asks for values, names, or locations, return distinct results
+unless duplicates are explicitly requested.
 Return ONLY the SQL query inside a ```sql code block. No explanation."""
 
 # Available placeholders: {schema}, {question}, {sql}, {result}, {issue}
