@@ -45,6 +45,8 @@ Baseline (`results/eval_baseline.json`):
 | Pass rate @ iter 3 | `<TODO %>` |
 | Agent errors | `<TODO>` |
 
+**Commentary:** `<TODO — 1–2 sentences: what was the first-attempt accuracy, how much did the loop add by iter 2/3, and what does that say about generation quality vs. the loop's contribution>`
+
 <!-- TODO after H100: paste the summary block from results/eval_baseline.json -->
 
 ---
@@ -55,21 +57,29 @@ Target: **P95 end-to-end agent latency < 5s at 10 RPS.**
 
 Load test: `load_test/driver.py --rps 10 --duration 300`.
 
-### Iteration 0 — baseline
-- **Observed:** P95 = `<TODO>` s, KV-cache peak = `<TODO>`, requests waiting peak = `<TODO>`.
-- **Verdict:** `<met / not met>`.
+### Baseline performance vs. SLO
+- **P95 latency:** `<TODO>` s vs. 5s target → `<met / not met>`
+- **Throughput sustained:** `<TODO>` RPS vs. 10 RPS target
+- **Supporting metrics at baseline:** KV-cache peak `<TODO>`, requests-waiting peak `<TODO>`
 
-### Iteration 1
+### Iteration log
+
+**Iteration 1**
 - **Saw:** `<TODO — e.g. KV cache saturated at 0.98, queue climbing>`
 - **Hypothesized:** `<TODO — e.g. max-num-seqs too high, causing cache thrash>`
 - **Changed:** `<TODO — e.g. max-num-seqs 64 → 32>`
 - **Result:** `<TODO — P95 moved from X to Y>`
 
-### Iteration 2
+**Iteration 2**
 - **Saw / Hypothesized / Changed / Result:** `<TODO>`
 
 <!-- Keep at least one real diagnosis cycle even if iter 0 already met the SLO.
      Diagnosis quality is graded above hitting the number. -->
+
+### Final numbers (post-tuning)
+- **Final P95 latency:** `<TODO>` s → `<met / not met>`
+- **Final throughput:** `<TODO>` RPS
+- **Final config change(s) from baseline:** `<TODO — list the flags that differ from §1>`
 
 ### Quality regression check
 Re-ran the eval after tuning (`results/eval_after_tuning.json`) to confirm latency changes did not degrade correctness:
