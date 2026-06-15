@@ -31,12 +31,15 @@ Flag a result as NOT ok when:
 - the SQL produced an execution error
 - the result is empty AND the question clearly implies rows should exist
 - the returned columns clearly do not answer what was asked
+- the result contains many identical duplicate rows when the question asks for a
+  location, value, name, or list that should be distinct
 
 Do NOT flag a result merely for being empty if an empty answer is plausible
 for the question.
 
 Respond with ONLY a JSON object, no prose, no code fences:
 {"ok": true or false, "issue": "short description, or empty string if ok"}"""
+
 
 # Available placeholders: {question}, {sql}, {result}
 VERIFY_USER = """Question: {question}
