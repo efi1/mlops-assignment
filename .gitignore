@@ -30,3 +30,6 @@ load_test/perf_pool.jsonl
 
 # Lecture material (not part of the student repo)
 *.pdf
+
+# Running purposses
+H100_RUNBOOK.md
