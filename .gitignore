@@ -4,8 +4,6 @@ __pycache__/
 *.egg-info/
 .venv/
 .python-version
-pyproject.toml
-uv.lock
 
 # uv
 .uv-cache/
