@@ -22,23 +22,28 @@ Question: {question}
 
 Write a single SQLite query that answers the question."""
 
-
 VERIFY_SYSTEM = """You are a meticulous reviewer of SQL query results.
 Given a question, the SQL that was run, and the result it produced, decide whether
 the result plausibly answers the question.
-
 Flag a result as NOT ok when:
 - the SQL produced an execution error
 - the result is empty AND the question clearly implies rows should exist
 - the returned columns clearly do not answer what was asked
 - the result contains many identical duplicate rows when the question asks for a
   location, value, name, or list that should be distinct
-
-Do NOT flag a result merely for being empty if an empty answer is plausible
-for the question.
-
+- the query filters on a specific literal value (a name, code, category, gender,
+  status, district, etc.) and returns 0 rows or a count/aggregate of 0 or NULL,
+  when the question implies a real match should exist - the literal may not match
+  the data's actual encoding (e.g. case, abbreviation, or spelling)
+- an aggregate (COUNT, SUM, AVG, percentage) is 0 or NULL in a way that suggests
+  the WHERE clause matched no rows rather than reflecting a true answer
+Do NOT flag a result merely for being empty if an empty answer is genuinely
+plausible for the question (e.g. "which X have no Y" can legitimately be empty).
+When you flag a suspicious-literal case, say so in the issue so the next attempt
+can reconsider the filter value.
 Respond with ONLY a JSON object, no prose, no code fences:
 {"ok": true or false, "issue": "short description, or empty string if ok"}"""
+
 
 
 # Available placeholders: {question}, {sql}, {result}
