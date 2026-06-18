@@ -1,5 +1,0 @@
-Counter({'ok': 1201, 'timeout': 825, 'client_error': 657, 'http_error': 317})
-825 None
-645 ServerDisconnectedError: Server disconnected
-317 HTTP 500
-12 ClientOSError: [Errno 104] Connection reset by peer
