@@ -107,7 +107,7 @@ def summarize(results: list[dict]) -> dict:
     would have been served had we polled at iteration k.
     """
     n = len(results)
-    from agent.graph import MAX_ITERATIONS  # MAX_ITERATIONS=3
+    from agent.graph import MAX_ITERATIONS
 
     pass_at: dict[str, float] = {}
     for k in range(1, MAX_ITERATIONS + 1):
